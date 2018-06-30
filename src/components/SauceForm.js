@@ -27,10 +27,10 @@ class BaseForm extends PureComponent {
         <label>
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="initial sauce">Pick your sauce!</option>
-            <option value="white sauce">White sauce</option>
-            <option value="red sauce">Red sauce</option>
-            <option value="double red sauce">Double red sauce € 1,00</option>
-            <option value="mix sauce">Mix it up € 1,50</option>
+            <option value="White sauce">White sauce</option>
+            <option value="Red sauce">Red sauce</option>
+            <option value="Double red sauce">Double red sauce € 1,00</option>
+            <option value="Mix it up">Mix it up € 1,50</option>
           </select>
         </label>
         <input type="submit" value="Choose" />

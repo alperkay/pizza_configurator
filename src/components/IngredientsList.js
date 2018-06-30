@@ -15,11 +15,11 @@ class IngredientsList extends PureComponent {
         <SauceForm />
         <ToppingForm />
         <DroneForm />
-        <p>{this.props.base}</p>
-        <p>{this.props.sauce}</p>
-        <p>{this.props.toppings.join(', ')}</p>
-        <p>{this.props.drone}</p>
-        <p>{this.props.totalCost} €</p>
+        <p><b>Base: </b>{this.props.base}</p>
+        <p><b>Sauce: </b>{this.props.sauce}</p>
+        <p><b>Toppings: </b>{this.props.toppings.join(', ')}</p>
+        <p><b>Delivery with drone: </b>{this.props.drone}</p>
+        <p><b>Total cost: </b>{this.props.totalCost} €</p>
       </div>
     )
   }

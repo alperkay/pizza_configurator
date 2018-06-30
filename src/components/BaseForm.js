@@ -26,10 +26,10 @@ class BaseForm extends PureComponent {
       <form onSubmit={this.handleSubmit}>
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="initial base">Pick a base!</option>
-            <option value="small base">20cm NY Style € 6,45</option>
-            <option value="medium base">25cm NY Style € 8,99</option>
-            <option value="large base">30cm NY Style € 11,49</option>
-            <option value="xlarge base">35cm NY Style € 13,49</option>
+            <option value="20cm NY Style">20cm NY Style € 6,45</option>
+            <option value="25cm NY Style">25cm NY Style € 8,99</option>
+            <option value="30cm NY Style">30cm NY Style € 11,49</option>
+            <option value="35cm NY Style">35cm NY Style € 13,49</option>
           </select>
         <input type="submit" value="Choose" />
       </form>

@@ -27,8 +27,8 @@ class DroneForm extends PureComponent {
         <label>
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="initial">Turbo-drone-delivery?</option>
-            <option value="true">yes</option>
-            <option value="false">no</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
           </select>
         </label>
         <input type="submit" value="Choose" />
