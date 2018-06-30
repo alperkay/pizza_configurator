@@ -2,6 +2,7 @@ export const SELECT_BASE = 'SELECT_BASE'
 export const SELECT_SAUCE = 'SELECT_SAUCE'
 export const SELECT_TOPPINGS = 'SELECT_TOPPINGS'
 export const SELECT_DRONE = 'SELECT_DRONE'
+export const CLEAR_PIZZA = 'CLEAR_PIZZA'
 
 export function selectBase(base) {
   return {
@@ -28,5 +29,11 @@ export function selectDrone(drone) {
   return {
     type: SELECT_DRONE,
     payload: drone
+  }
+}
+
+export function clearPizza() {
+  return {
+    type: CLEAR_PIZZA
   }
 }

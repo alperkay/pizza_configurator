@@ -4,6 +4,7 @@ import BaseForm from './BaseForm'
 import SauceForm from './SauceForm'
 import ToppingForm from './ToppingForm'
 import DroneForm from './DroneForm'
+import { clearPizza } from '../actions/ingredients'
 
 
 class IngredientsList extends PureComponent {
@@ -20,6 +21,7 @@ class IngredientsList extends PureComponent {
         <p><b>Toppings: </b>{this.props.toppings.join(', ')}</p>
         <p><b>Delivery with drone: </b>{this.props.drone}</p>
         <p><b>Total cost: </b>{this.props.totalCost} €</p>
+        <button onClick={this.props.clearPizza}>Clear the order</button>
       </div>
     )
   }
@@ -35,4 +37,4 @@ const mapStateToProps = function (state) {
   }
 }
 
-export default connect (mapStateToProps)(IngredientsList)
+export default connect (mapStateToProps, {clearPizza})(IngredientsList)
