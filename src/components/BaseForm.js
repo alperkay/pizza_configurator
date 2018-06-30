@@ -31,7 +31,7 @@ class BaseForm extends PureComponent {
             <option value="30cm NY Style">30cm NY Style € 11,49</option>
             <option value="35cm NY Style">35cm NY Style € 13,49</option>
           </select>
-        <input type="submit" value="Choose" />
+        <input type="submit" value="Add" />
       </form>
     );
   }

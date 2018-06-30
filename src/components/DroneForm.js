@@ -31,7 +31,7 @@ class DroneForm extends PureComponent {
             <option value="no">no</option>
           </select>
         </label>
-        <input type="submit" value="Choose" />
+        <input type="submit" value="Add" />
       </form>
     );
   }

@@ -33,7 +33,7 @@ class BaseForm extends PureComponent {
             <option value="Mix it up">Mix it up € 1,50</option>
           </select>
         </label>
-        <input type="submit" value="Choose" />
+        <input type="submit" value="Add" />
       </form>
     );
   }

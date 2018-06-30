@@ -36,7 +36,7 @@ class ToppingForm extends PureComponent {
             <option value="chicken">chicken</option>
           </select>
         </label>
-        <input type="submit" value="Choose" />
+        <input type="submit" value="Add" />
       </form>
     );
   }
