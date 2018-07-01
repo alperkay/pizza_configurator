@@ -1,4 +1,4 @@
-import {SELECT_BASE, SELECT_SAUCE, SELECT_TOPPINGS, SELECT_DRONE, CLEAR_PIZZA} from '../actions/ingredients'
+import {SELECT_BASE, SELECT_SAUCE, SELECT_TOPPINGS, SELECT_DRONE} from '../actions/ingredients'
 
 
 const initialState = {
@@ -47,8 +47,6 @@ export default function (state = initialState, action) {
     case SELECT_DRONE:
       if (action.payload==='yes' && state.droneDelivery!=='yes') return {...state, droneDelivery: action.payload, totalCost: state.totalCost*1.1}
       if (action.payload==='yes' && state.droneDelivery === 'yes') return {...state, droneDelivery: 'no', totalCost: state.totalCost/1.1}
-    case CLEAR_PIZZA:
-      state=initialState
     default:
       return state
   }

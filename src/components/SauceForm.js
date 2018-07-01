@@ -1,42 +1,62 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux'
 import { selectSauce } from '../actions/ingredients'
+import { connect } from 'react-redux'
+import compose from 'recompose/compose';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
-class BaseForm extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'initial sauce'};
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 350,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+class SauceForm extends React.Component {
+  state = {sauce: ''};
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const sauce = this.state.value;
-    if (this.state.value!=="initial sauce") this.props.selectSauce(sauce)
-  }
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+    this.props.selectSauce(event.target.value)
+  };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="initial sauce">Pick your sauce!</option>
-            <option value="White sauce">White sauce</option>
-            <option value="Red sauce">Red sauce</option>
-            <option value="Double red sauce">Double red sauce € 1,00</option>
-            <option value="Mix it up">Mix it up € 1,50</option>
-          </select>
-        </label>
-        <input type="submit" value="Add" />
+      <form className={classes.root} autoComplete="off">
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="sauce-form">then a sauce...</InputLabel>
+          <Select
+            value={this.state.sauce}
+            onChange={this.handleChange}
+            input={<Input name="sauce" id="sauce" />}
+          >
+            <MenuItem value="White sauce">White sauce</MenuItem>
+            <MenuItem value="Red sauce">Red sauce</MenuItem>
+            <MenuItem value="Double red sauce">Double red sauce € 1,00</MenuItem>
+            <MenuItem value="Mix it up">Mix it up € 1,50</MenuItem>
+          </Select>
+        </FormControl>
       </form>
     );
   }
 }
 
-export default connect(null, {selectSauce})(BaseForm)
+SauceForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default compose(withStyles(styles), connect(null, {selectSauce}))(SauceForm);

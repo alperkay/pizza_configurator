@@ -1,40 +1,62 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux'
 import { selectBase } from '../actions/ingredients'
+import { connect } from 'react-redux'
+import compose from 'recompose/compose';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
-class BaseForm extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'initial base'};
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 350,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+class BaseForm extends React.Component {
+  state = {base: ''};
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const base = this.state.value;
-    if (this.state.value!=="initial base") this.props.selectBase(base)
-  }
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+    this.props.selectBase(event.target.value)
+  };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <form onSubmit={this.handleSubmit}>
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="initial base">Pick a base!</option>
-            <option value="20cm NY Style">20cm NY Style € 6,45</option>
-            <option value="25cm NY Style">25cm NY Style € 8,99</option>
-            <option value="30cm NY Style">30cm NY Style € 11,49</option>
-            <option value="35cm NY Style">35cm NY Style € 13,49</option>
-          </select>
-        <input type="submit" value="Add" />
+      <form className={classes.root} autoComplete="off">
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="base-form">Let's pick a base first!</InputLabel>
+          <Select
+            value={this.state.base}
+            onChange={this.handleChange}
+            input={<Input name="base" id="base" />}
+          >
+            <MenuItem value="20cm NY Style">20cm NY Style € 6,45</MenuItem>
+            <MenuItem value="25cm NY Style">25cm NY Style € 8,99</MenuItem>
+            <MenuItem value="30cm NY Style">30cm NY Style € 11,49</MenuItem>
+            <MenuItem value="35cm NY Style">35cm NY Style € 13,49</MenuItem>
+          </Select>
+        </FormControl>
       </form>
     );
   }
 }
 
-export default connect(null, {selectBase})(BaseForm)
+BaseForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default compose(withStyles(styles), connect(null, {selectBase}))(BaseForm);

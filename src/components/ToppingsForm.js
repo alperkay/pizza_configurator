@@ -8,10 +8,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
-import Chip from '@material-ui/core/Chip';
 
 const styles = theme => ({
   root: {
@@ -52,7 +49,7 @@ const toppings = [
   "chicken"
 ];
 
-class Test3 extends React.Component {
+class ToppingsForm extends React.Component {
   state = {
     toppings: []
   };
@@ -99,9 +96,9 @@ class Test3 extends React.Component {
   }
 }
 
-Test3.propTypes = {
+ToppingsForm.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default compose(withStyles(styles, { withTheme: true }), connect(null, {selectToppings}))(Test3);
+export default compose(withStyles(styles, { withTheme: true }), connect(null, {selectToppings}))(ToppingsForm);

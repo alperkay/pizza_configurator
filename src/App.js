@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IngredientsList from './components/IngredientsList'
+import PizzaConfigurator from './components/PizzaConfigurator'
 // import './App.css';
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
       <div className="App">
         <h1>WELCOME TO NEWAGEPIZZA.COM</h1>
         <h2>Let's get you a delicious pizza!</h2>
-        <IngredientsList />
+        <PizzaConfigurator />
       </div>
     );
   }

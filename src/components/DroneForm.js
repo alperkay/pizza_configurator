@@ -1,40 +1,62 @@
-import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import { selectDrone } from '../actions/ingredients'
+import compose from 'recompose/compose';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
-class DroneForm extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'initial'};
+const styles = {
+  root: {
+    color: green[600],
+    '&$checked': {
+      color: green[500],
+    },
+  },
+  checked: {},
+  size: {
+    width: 40,
+    height: 40,
+  },
+  sizeIcon: {
+    fontSize: 20,
+  },
+};
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+class DroneForm extends React.Component {
+  state = {
+    checkedA: true,
+    checkedB: false
+  };
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const drone = this.state.value;
-    if (this.state.value!=="initial") this.props.selectDrone(drone)
-  }
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
+    this.props.selectDrone(event.target.value)
+  };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="initial">Turbo-drone-delivery?</option>
-            <option value="yes">yes</option>
-            <option value="no">no</option>
-          </select>
-        </label>
-        <input type="submit" value="Add" />
-      </form>
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checkedB}
+              onChange={this.handleChange('checkedB')}
+              value='yes'
+            />
+          }
+          label="Fast drone delivery"
+        />
+      </FormGroup>
     );
   }
 }
 
-export default connect(null, {selectDrone})(DroneForm)
+DroneForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default compose(withStyles(styles), connect(null, {selectDrone}))(DroneForm);
