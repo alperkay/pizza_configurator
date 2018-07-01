@@ -20,7 +20,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 300
+    minWidth: 350
   },
   chips: {
     display: 'flex',
@@ -67,7 +67,6 @@ class Test3 extends React.Component {
     const something = () => {
       if (this.state.toppings.length>3) {this.state.toppings.shift()} return this.state.toppings
     }
-    console.log(this.state.toppings)
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>

@@ -25,8 +25,8 @@ class IngredientsList extends PureComponent {
       //   <ToppingForm />
       //   <DroneForm />
       //   <button>Order!</button> */}
-        <button onClick={this.props.clearPizza}>Restart</button>
-        <p><b>Total cost: </b>{this.props.totalCost} €</p>
+        {/* <button onClick={this.props.clearPizza}>Restart</button> */}
+        <p><b>Total cost: </b>{Number(this.props.totalCost).toFixed(2)} €</p>
       </div>
     )
   }
