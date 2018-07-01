@@ -26,12 +26,21 @@ const sauceCost = (sauce) => {
 export default function (state = initialState, action) {
   switch (action.type) {
     case SELECT_BASE:
-      if (state.droneDelivery!=='yes') return {...state, base: action.payload, totalCost: state.totalCost+baseCost(action.payload)}
-      else if (state.droneDelivery === 'yes') return {...state, base: action.payload, totalCost: state.totalCost+baseCost(action.payload)*1.1} //if user already selected drone delivery and change mind for base selection
-
+      if (!state.base) {
+        if (state.droneDelivery!=='yes') return {...state, base: action.payload, totalCost: state.totalCost+baseCost(action.payload)}
+        else if (state.droneDelivery === 'yes') return {...state, base: action.payload, totalCost: state.totalCost+baseCost(action.payload)*1.1}
+      } else if (state.base) {
+        if (state.droneDelivery!=='yes') return {...state, base: action.payload, totalCost: state.totalCost-baseCost(state.base)+baseCost(action.payload)}
+        else if (state.droneDelivery === 'yes') return {...state, base: action.payload, totalCost: state.totalCost-baseCost(state.base)*1.1+baseCost(action.payload)*1.1}
+      }
     case SELECT_SAUCE:
-      if (state.droneDelivery!=='yes') return {...state, sauce: action.payload, totalCost: state.totalCost+sauceCost(action.payload)}
-      else if (state.droneDelivery === 'yes') return {...state, sauce: action.payload, totalCost: state.totalCost+sauceCost(action.payload)*1.1} //if user already selected drone delivery and change mind for sauce selection
+      if (!state.sauce) {
+        if (state.droneDelivery!=='yes') return {...state, sauce: action.payload, totalCost: state.totalCost+sauceCost(action.payload)}
+        else if (state.droneDelivery === 'yes') return {...state, sauce: action.payload, totalCost: state.totalCost+sauceCost(action.payload)*1.1}
+      } else if (state.sauce) {
+        if (state.droneDelivery!=='yes') return {...state, sauce: action.payload, totalCost: state.totalCost-sauceCost(state.sauce)+sauceCost(action.payload)}
+        else if (state.droneDelivery === 'yes') return {...state, sauce: action.payload, totalCost: state.totalCost-sauceCost(state.sauce)*1.1+sauceCost(action.payload)*1.1}
+      }
 
     case SELECT_TOPPINGS:
       if (action.payload.length>3) {

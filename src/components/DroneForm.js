@@ -48,7 +48,7 @@ class DroneForm extends React.Component {
               value='yes'
             />
           }
-          label="Fast drone delivery"
+          label="Fast drone delivery (costs 10% more)"
         />
       </FormGroup>
     );

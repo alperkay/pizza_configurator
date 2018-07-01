@@ -10,6 +10,8 @@ class PizzaConfigurator extends PureComponent {
   render() {
     return (
       <div>
+        <h2>Welcome to <span className="website">NewAgePizza.com</span></h2>
+        <h3>Let's get you a delicious pizza!</h3>
         <BaseForm />
         <SauceForm />
         <ToppingsForm />

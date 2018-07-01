@@ -38,7 +38,7 @@ class BaseForm extends React.Component {
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="base-form">Let's pick a base first!</InputLabel>
+          <InputLabel htmlFor="base-form">Pick a base first!</InputLabel>
           <Select
             value={this.state.base}
             onChange={this.handleChange}
