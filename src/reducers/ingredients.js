@@ -5,7 +5,7 @@ const initialState = {
   base: null,
   sauce: null,
   toppings: [],
-  droneDelivery: null,
+  droneDelivery: "no",
   totalCost: 0.0
 }
 
@@ -50,8 +50,7 @@ export default function (state = initialState, action) {
       //   else if (state.toppings.includes(action.payload)) {return state}
     case SELECT_DRONE:
       if (action.payload==='yes' && state.droneDelivery!=='yes') return {...state, droneDelivery: action.payload, totalCost: Number((state.totalCost*1.1).toFixed(2))}
-      if (state.droneDelivery === 'yes') return {...state, droneDelivery: action.payload, totalCost: Number((state.totalCost/1.1).toFixed(2))}
-      if (action.payload==='no') return {...state, droneDelivery: action.payload}
+      if (action.payload==='yes' && state.droneDelivery === 'yes') return {...state, droneDelivery: 'no', totalCost: Number((state.totalCost/1.1).toFixed(2))}
     case CLEAR_PIZZA:
       state=initialState
     default:
