@@ -65,14 +65,13 @@ class Test3 extends React.Component {
   render() {
     const { classes, theme } = this.props;
     const something = () => {
-      if (this.state.toppings.length>3) {this.state.toppings.shift()}
-      return this.state.toppings
+      if (this.state.toppings.length>3) {this.state.toppings.shift()} return this.state.toppings
     }
     console.log(this.state.toppings)
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple">and some toppings(max 3)...</InputLabel>
+          <InputLabel htmlFor="select-multiple">and add some toppings (up to 3)...</InputLabel>
           <Select
             multiple
             value={something()}

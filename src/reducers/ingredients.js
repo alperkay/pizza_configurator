@@ -34,10 +34,20 @@ export default function (state = initialState, action) {
       else if (state.sauce && state.droneDelivery === 'yes')return {...state, sauce: action.payload, totalCost: Number((((state.totalCost)/1.1-sauceCost(state.sauce)+sauceCost(action.payload))*1.1).toFixed(2))} //if user already selected drone delivery and change mind for sauce selection
       else return {...state, sauce: action.payload, totalCost: state.totalCost-sauceCost(state.sauce)+sauceCost(action.payload)}
     case SELECT_TOPPINGS:
-      if (state.droneDelivery!=='yes') {
+      if (action.payload.length>3) {
+        action.payload.shift()
+        return {...state, toppings: action.payload, totalCost: state.totalCost}
+      } else if (action.payload.length<state.toppings.length) {
+        return {...state, totalCost: state.totalCost-0.5}
+      } else if (action.payload.length<=3) {
         return {...state, toppings: action.payload, totalCost: state.totalCost+0.5}
-      } else if (state.droneDelivery==='yes')
-      return {...state, toppings: action.payload, totalCost: Number((((state.totalCost)/1.1+0.5)*1.1).toFixed(2))}
+      }
+      // } else if (!state.toppings.includes(action.payload) && state.droneDelivery==='yes')
+      // return {...state, toppings: action.payload, totalCost: Number((((state.totalCost)/1.1+0.5)*1.1).toFixed(2))}
+      //   else if (!state.toppings.includes(action.payload) && state.toppings.length>3) {
+      //   state.toppings.shift()
+      //   }
+      //   else if (state.toppings.includes(action.payload)) {return state}
     case SELECT_DRONE:
       if (action.payload==='yes' && state.droneDelivery!=='yes') return {...state, droneDelivery: action.payload, totalCost: Number((state.totalCost*1.1).toFixed(2))}
       if (state.droneDelivery === 'yes') return {...state, droneDelivery: action.payload, totalCost: Number((state.totalCost/1.1).toFixed(2))}
